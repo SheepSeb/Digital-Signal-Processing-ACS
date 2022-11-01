@@ -1,0 +1,32 @@
+ng = 4;
+ns = 11;
+dt = 0.01;
+j = sqrt(-1);
+
+[w1,N] = PS_Lab_2_Tema_1(ng,ns);
+w2 = PS_Lab_2_Tema_3abc(ng,ns);
+
+dt = 0.01;
+w = -pi:dt:pi;
+n = 0:dt:N-1;
+
+x = cos(w1*n) + cos(w2*n);
+
+figure(1)
+plot(n,x);
+% Perioada aprox de 210s
+
+X = freqz(x,1,w);
+figure(2)
+plot(w,abs(X));
+
+[a1,a2] = PS_Lab_2_Tema_3c(ng,ns);
+x_a = a1*cos(w1*n) + a2 * cos(w2*n);
+
+figure(3)
+plot(n,x_a);
+% Semnalul nu mai este la fel de noisy. Perioada se pastreaza si doar se
+% modifica amplitudinea semnalului duc
+figure(4)
+X_a = freqz(x,1,w);
+plot(w,abs(X_a));
